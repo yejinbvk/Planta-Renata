@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planta Renata - About</title>
+  <!-- Typekit 웹폰트 로드 -->
+  <link rel="stylesheet" href="https://use.typekit.net/ayd2iel.css" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      color: springgreen;
+      font-family: sans-serif;
+      line-height: 1.7;
+      position: relative;
+      min-height: 100vh;
+      word-break: keep-all;
+    }
+    .header-title {
+      position: fixed; /* viewport 최상단 고정 */
+      top: 18px; /* 살짝 여백 추가 */
+      left: 20px;
+      font-size: 14px;
+      font-family: "chainprinter", sans-serif;
+      color: springgreen;
+      margin: 0;
+      padding: 0;
+      z-index: 1000;
+      pointer-events: none;
+    }
+    /* Header back link 스타일 (제목 바로 아래) */
+    .header-main {
+      position: fixed; /* viewport 최상단 고정 */
+      top: 40px; /* Back 링크와 타이틀 사이 간격 확대 */
+      left: 20px;
+      font-size: 14px;
+      font-family: "chainprinter", sans-serif;
+      color: springgreen;
+      text-decoration: none;
+      margin: 0;
+      padding: 0;
+      z-index: 1000;
+      pointer-events: auto;
+    }
+    .about-content {
+      max-width: 600px;
+      margin: 60px auto 40px; /* 상단 여백 축소 */
+      padding: 0 20px;
+      font-size: 14px;
+      text-align: left;
+      font-family: sans-serif;
+    }
+    .about-content p {
+      word-break: keep-all;
+    }
+    .about-content p + p {
+      margin-top: 1em;
+    }
+    .about-content .en {
+      font-family: "chainprinter", sans-serif;
+      margin-top: 2em;
+    }
+    /* Hover 이미지 컨테이너: 영어 본문 옆 위치, 크기 키움 */
+    .hover-img-container {
+      position: absolute;
+      top: 70%;
+      right: 120px;
+      transform: translateY(-50%);
+      width: 120px;
+      height: auto;
+      z-index: 1;
+      cursor: pointer;
+    }
+    .hover-img-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .hover-img-container img.hover {
+      display: none;
+    }
+    .hover-img-container:hover img.default {
+      display: none;
+    }
+    .hover-img-container:hover img.hover {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="header-title">Planta Renata</h1>
+  <a href="content.html" class="header-main">Back</a>
+
+  <section class="about-content">
+    <p>
+      Planta Renata는 카를 블로스펠트가 남긴 식물 사진들을 AI 기술로 복원하고, 그 결과물을 디지털 아카이브 형태로 구성하는 실험적인 프로젝트이다. 퍼블릭 도메인이 된 그의 이미지는 이제 AI를 통해 다시 되살아나며 당대의 기술로는 볼 수 없었던 디테일과 감각을 동반한 새로운 이미지로 변형된다.
+    </p>
+    <p>
+      이 프로젝트는 만료된 이미지가 어떻게 다시 생명력을 가질 수 있는지, 그리고 그것이 어떤 방식으로 새로운 창작 방식이 될 수 있는지를 실험한다. ‘Everything is remix’라는 말처럼, 완전히 새로운 것이란 존재하기 어려운 시대에 복원 행위는 곧 재해석의 출발점이자 창작의 방식이 될 수 있다. Planta Renata는 아카이빙, 복원, 창작이 뒤섞인 경계 위에서 새로운 웹 아카이브의 형식을 제안한다.
+    </p>
+    <p class="en">
+      Planta Renata is an experimental project that restores Karl Blossfeldt’s botanical photographs using AI technology and reconfigures the results into a digital archive. His meticulous efforts to capture the structures and textures of plants were, in themselves, an attempt to reveal the abstract and sculptural qualities of nature. Now in the public domain, his images are revived through AI and transformed into new visual forms—infused with details and sensations that were once beyond the reach of the technology of his time.
+    </p>
+    <p class="en">
+      This project explores how expired images can regain vitality and how such processes can evolve into new modes of creation. The act of restoration through AI goes beyond simple reproduction; the resulting digital archive, composed of revived images, becomes a visual experience and a creative work in itself. Planta Renata proposes a new format for web-based archives—one that exists at the intersection of archiving, restoration, and creation.
+    </p>
+  </section>
+
+  <div class="hover-img-container">
+    <img src="about2.png" alt="About image" class="default" />
+    <img src="about1.png" alt="About hover image" class="hover" />
+  </div>
+</body>
+</html>

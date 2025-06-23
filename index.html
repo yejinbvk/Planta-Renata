@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planta Renata</title>
+  <!-- Typekit Font -->
+  <link rel="stylesheet" href="https://use.typekit.net/ayd2iel.css">
+  <style>
+    /* Full-screen setup with scroll enabled */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      scroll-behavior: smooth;
+    }
+    /* Page wrapper to allow scroll space */
+    .page {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+    }
+    /* Video background styling */
+    #main-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) contrast(1.2);
+      z-index: -1;
+    }
+    /* Scroll indicator arrow */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid springgreen;
+      z-index: 1;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+    /* Title styling */
+    .title {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 14px;
+      font-family: "chainprinter", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      color: springgreen;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      margin: 0;
+      padding: 0;
+      z-index: 1;
+    }
+    /* Content container styling */
+    .container {
+      position: absolute;
+      top: 48%;
+      left: 2.5%;
+      transform: translateY(-50%);
+      width: 95%;
+      z-index: 1;
+    }
+    .description {
+      margin-top: 20px;
+      font-family: "chainprinter", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: 14px;
+      line-height: 1.4;
+      color: springgreen;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      text-align: left;
+      margin-bottom: 0;
+    }
+    /* Black background for second section */
+    #page2 {
+      background-color: black;
+    }
+  </style>
+</head>
+<body>
+  <!-- First full-screen section -->
+  <div class="page" id="page1">
+    <video id="main-video" src="vid1.mp4" autoplay muted loop playsinline></video>
+    <h1 class="title">Planta Renata</h1>
+    <div class="container">
+      <p class="description">
+        Planta Renata is a digital resurrection project that revives the photographic legacy of Karl Blossfeldt through artificial intelligence. By restoring his iconic botanical images—now in the public domain—and using ComfyUI, the project enhances structural details and textures with new clarity. Beyond simple restoration, it reimagines Blossfeldt’s tools, methods, and visual perspective through AI-driven visualization.
+      </p>
+    </div>
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator"></div>
+  </div>
+  <!-- Second section: triggers redirect -->
+  <div class="page" id="page2"></div>
+  <script>
+    // Redirect to content.html when user scrolls into second section
+    const page2 = document.getElementById('page2');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          window.location.href = 'content.html';
+        }
+      });
+    }, { threshold: 0.5 });
+    observer.observe(page2);
+
+    // Click indicator to scroll and then redirect
+    const indicator = document.querySelector('.scroll-indicator');
+    indicator.addEventListener('click', () => {
+      window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+      setTimeout(() => {
+        window.location.href = 'content.html';
+      }, 800);
+    });
+  </script>
+</body>
+</html>

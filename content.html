@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planta Renata - content</title>
+  <!-- Typekit 웹폰트 로드 -->
+  <link rel="stylesheet" href="https://use.typekit.net/ayd2iel.css">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background-color: white;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: "chainprinter", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      position: relative;
+    }
+    /* Header title 스타일 */
+    .header-title {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 14px;
+      font-family: "chainprinter", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      color: springgreen;
+      margin: 0;
+      padding: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    /* Header main link 스타일 */
+    .header-main {
+      position: absolute;
+      top: 48px;
+      left: 20px;
+      font-size: 14px;
+      font-family: "chainprinter", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      color: springgreen;
+      text-decoration: none;
+      z-index: 1;
+      pointer-events: auto;
+    }
+    /* Header video link 스타일 */
+    .header-video {
+      position: absolute;
+      top: 68px;
+      left: 20px;
+      font-size: 14px;
+      font-family: "chainprinter", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      color: springgreen;
+      text-decoration: none;
+      z-index: 1;
+      pointer-events: auto;
+    }
+    /* Header about link 스타일 */
+    .header-about {
+      position: absolute;
+      top: 88px;
+      left: 20px;
+      font-size: 14px;
+      font-family: "chainprinter", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      color: springgreen;
+      text-decoration: none;
+      z-index: 1;
+      pointer-events: auto;
+    }
+    /* Center subtitle 스타일 */
+    .center-text {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      font-family: "chainprinter", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      color: springgreen;
+      margin: 0;
+      padding: 0;
+      width: 80vw;
+      text-align: center;
+      white-space: normal;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .carousel {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      perspective: 2000px;
+      overflow: hidden;
+      background-color: white;
+      --hover-img: none;
+    }
+    .carousel::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: var(--hover-img);
+      background-size: cover;
+      background-position: center;
+      filter: blur(40px);
+      opacity: 0;
+      transition: opacity .3s ease;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .carousel.hovering::before { opacity: 1; }
+
+    .carousel-track {
+      position: absolute;
+      width:100%; height:100%;
+      transform-style: preserve-3d;
+      transform: translateZ(-2200px) rotateX(20deg);
+      transition: transform .1s ease-out;
+    }
+    .carousel-item {
+      position: absolute;
+      top:50%; left:50%;
+      transform-style: preserve-3d;
+      transform-origin: center center;
+      transition: transform .3s ease, z-index .3s ease;
+    }
+    .carousel-item img {
+      display: block;
+      object-fit: contain;
+      max-width: 280px;
+      max-height: 360px;
+      filter: grayscale(100%) contrast(200%) brightness(120%);
+      transition: transform .3s ease, filter .3s ease;
+      position: relative;
+      z-index: 1;
+    }
+    .carousel-item:hover img {
+      transform: scale(1.15) translateY(-10px);
+      filter: none;
+      z-index: 1001;
+    }
+    /* Popup 스타일 */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.9);
+      z-index: 9999;
+      padding: 0;
+      font-family: inherit;
+      font-weight: inherit;
+      font-style: inherit;
+    }
+    .popup.show { display: block; }
+    .popup .text {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      margin: 0;
+      white-space: pre-wrap;
+      font-size: 13px;
+      color: white;
+      font-family: inherit;
+      font-weight: inherit;
+      font-style: inherit;
+      line-height: 1.6;
+    }
+    .popup img {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 90vw;
+      max-height: 80vh;
+      object-fit: contain;
+      transition: opacity .3s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-title">Planta Renata</div>
+  <a href="index.html" class="header-main">Main</a>
+  <a href="video.html" class="header-video">Video</a>
+  <a href="about.html" class="header-about">About</a>
+  <div class="center-text">
+    Each segment opens an AI-restored botanical photograph originally taken by Karl Blossfeldt.
+    Through ComfyUI, these images have been reimagined with enhanced clarity, revealing intricate forms and textures once captured through his handmade lens.
+  </div>
+  <div class="carousel" id="carousel">
+    <div class="carousel-track" id="carousel-track"></div>
+  </div>
+  <div class="popup" id="popup">
+    <div class="text" id="popup-text"></div>
+    <img id="popup-img" src="" alt="Popup Image" />
+  </div>
+  <script>
+    const carousel = document.getElementById('carousel');
+    const track = document.getElementById('carousel-track');
+    const popup = document.getElementById('popup');
+    const popupImg = document.getElementById('popup-img');
+    const popupText = document.getElementById('popup-text');
+    const imageCount = 76;
+    const radius = 1100;
+    const items = [];
+    const dataMap = [
+["Fern Spiral", "A young fern frond tightly curled in a spiral, representing early growth."],
+["Thistle Head", "A spiky thistle flower head with radial symmetry and dense bristles."],
+["Succulent Rosette", "A plump succulent forming a geometric rosette with pointed tips."],
+["Horsetail Stem", "A segmented stalk of horsetail plant with a brush-like top."],
+["Ginkgo Leaf", "A fan-shaped ginkgo biloba leaf with distinct venation."],
+["Papaver Seed Pod", "A dried poppy seed capsule with a disk-like crown."],
+["Cactus Segment", "A ribbed cactus stem with sharp spines and textured skin."],
+["Haworthia", "A compact succulent with transparent-striped leaves in rosette form."],
+["Pine Cone", "A woody pine cone with spirally arranged scales."],
+["Aloe Vera", "A fleshy aloe plant with thick, tapering leaves arranged in a rosette."],
+["Poppy Seed Capsule", "A close-up of a poppy pod, dried and ready to release seeds."],
+["Fern Frond", "A mature fern leaf with symmetrical leaflets and fine texture."],
+["Echeveria", "A symmetrical succulent with overlapping, plump leaves."],
+["Maple Samara", "A maple seed with a wing-like structure for wind dispersal."],
+["Dandelion", "A spherical seed head ready to disperse fluffy seeds."],
+["Thistle Bud", "A hairy, unopened bud of a thistle plant."],
+["Horsetail Cross-section", "A segmented horsetail stem showing circular patterning."],
+["Asteraceae Flower", "A star-shaped flower head with thin, radiating petals."],
+["Leaf Bud on Twig", "A swollen bud on a thin branch, about to sprout leaves."],
+["Spore Capsule", "A dome-like structure that disperses spores, likely moss or fern."],
+["Unfurling Leaf Bud", "A leaf just beginning to open from a curled bud."],
+["Seed Cluster", "A close-packed seed head with pointed structures."],
+["Flower Stamen", "The pollen-covered stamen of a flower in sharp detail."],
+["Spiral Aloe", "A succulent with thick leaves arranged in a perfect spiral."],
+["Bramble Stem", "A woody stem with sharp thorns and emerging nodes."],
+["Pollen Anther", "A macro view of a flower anther with granular pollen grains."],
+["Burdock", "A spiky seed head known for clinging to fur and fabric."],
+["Fern Crozier", "A tightly curled fern frond in early development."],
+["Pine Shoot", "A fresh pine tip showing emerging needle clusters."],
+["Fern Sporangium", "A spore-producing capsule found on the underside of fern leaves."],
+["Chestnut Shell", "A spiky husk that once enclosed a chestnut."],
+["Succulent Bud", "A plump new leaf emerging from a fleshy succulent."],
+["Fern Fiddlehead", "A spiral-shaped young fern frond beginning to unfurl."],
+["Thistle Crown", "A bristled, dome-shaped structure atop a thick stem."],
+["Daisy Head (Macro)", "A zoomed-in view of a daisy center with radial florets."],
+["Cactus Close-up", "A macro image of cactus ribs and areoles."],
+["Gourd Stem Base", "A twisted, woody stem from a squash or gourd."],
+["Flower Receptacle", "The thickened part of a flower stalk from which organs grow."],
+["Drooping Seed Pods", "A cluster of thin, elongated seed pods hanging from a branch."],
+["Fern Underside with Spores", "A fern leaf showing rows of spore cases (sori) underneath."],
+["Eucalyptus Fruit", "A woody fruit capsule often found on eucalyptus trees."],
+["Fern Leaf Detail", "A magnified view showing the vein structure of a fern leaflet."],
+["Sunflower Head (Dried)", "A dried sunflower with visible seed patterning."],
+["Poppy Capsule Close-up", "A detailed image of the ridged poppy seed pod crown."],
+["Sedge or Rush Cluster", "A tight tuft of thin, reed-like stems and seed heads."],
+["Dandelion Seed Macro", "A single dandelion seed with delicate parachute filaments."],
+["Seed Pod Section", "A bisected view of a dried seed pod showing inner compartments."],
+["Fern Crozier", "A young fern frond coiled tightly in spiral formation."],
+["Horsetail Stalk", "A jointed stalk with repeating circular segments."],
+["Poppy Capsule (Side View)", "A rounded seed pod viewed from its side, crown visible."],
+["Composite Flower Head", "A tightly packed inflorescence composed of tiny florets."],
+["Fern Rachis (Main Stem)", "The central stalk of a fern frond with delicate leaflet growth."],
+["Ginkgo Leaf (Side View)", "A side perspective of a fan-shaped ginkgo leaf showing its curve."],
+["Cactus Cross-section", "A sliced view revealing internal ribs and vascular texture."],
+["Succulent (Top View)", "A top-down view of a compact rosette succulent."],
+["Poppy Capsule (Top View)", "The top of a dried poppy seed pod with radial patterns."],
+["Cactus Spine Cluster", "A dense area of cactus with sharp spines and fuzzy texture."],
+["Flowering Stem (Macro)", "A macro image of blooming floral parts on a thick stem."],
+["Fern Fiddlehead (Macro)", "A close-up of a curled fern tip ready to unfurl."],
+["Succulent Tip", "A thick, rounded tip of a succulent leaf beginning to bud."],
+["Woody Stem with Buds", "A textured wooden stem with small, emerging buds."],
+["Poppy Seed Pod", "A spherical capsule with distinct crown at the top."],
+["Flower Bud Cluster", "Multiple tight buds growing from a single node."],
+["Spore-Producing Fern", "Underside of a fern leaf with clear lines of sori."],
+["Composite Flower Disc", "A detailed center of a daisy-like flower, showing symmetry."],
+["Gourd Stem Twist", "A dried, coiled gourd stem with organic texture."],
+["Cactus Tip with Areoles", "A cactus top view with prominent spine clusters."],
+["Poppy Capsule Cross-cut", "A poppy pod showing its radial seed compartments."],
+["Succulent Rosette (Dense)", "A tightly packed rosette of plump leaves."],
+["Dandelion Seed Head", "A ball of dandelion seeds with parachute structures."],
+["Leaf Venation Close-up", "A highly magnified image of leaf veins forming a geometric pattern."],
+["Coneflower Center", "A tight spiral of disk florets in a coneflower’s center."],
+["Succulent Detail", "A macro view of thick, translucent succulent leaves."],
+["Barrel Cactus", "A rounded cactus with ribs and radial spines."],
+["Haworthia (Transparent)", "A rosette succulent with see-through leaf tips and white stripes."],
+["Ginkgo Leaf (Macro)", "A magnified fan-shaped ginkgo leaf with radiating vein structure."]
+]
+;
+    popup.addEventListener('click', () => popup.classList.remove('show'));
+    function typeWriter(text, element, speed = 30) {
+      element.textContent = '';
+      let i = 0;
+      const timer = setInterval(() => {
+        element.textContent += text.charAt(i);
+        i++;
+        if (i >= text.length) clearInterval(timer);
+      }, speed);
+    }
+    for (let i = 0; i < imageCount; i++) {
+      const item = document.createElement('div');
+      item.className = 'carousel-item';
+      const img = document.createElement('img');
+      img.src = `${i+1}.png`;
+      img.alt = `Image ${i+1}`;
+      item.appendChild(img);
+      track.appendChild(item);
+      img.addEventListener('mouseenter', () => {
+        carousel.style.setProperty('--hover-img', `url(${i+1}.png)`);
+        carousel.classList.add('hovering');
+      });
+      img.addEventListener('mouseleave', () => {
+        carousel.style.setProperty('--hover-img', 'none');
+        carousel.classList.remove('hovering');
+      });
+      img.addEventListener('click', e => {
+        e.stopPropagation();
+        const idx = i+1;
+        popupImg.dataset.original = `${idx}.png`;
+        popupImg.dataset.hover = `${idx}-1.png`;
+        popupImg.src = popupImg.dataset.original;
+        const fullText = dataMap[i].join('\n');
+        popup.classList.add('show');
+        typeWriter(fullText, popupText);
+        popupImg.onload = () => {
+          const ar = popupImg.naturalWidth / popupImg.naturalHeight;
+          if (ar > 1) {
+            popupImg.style.width = '90vw';
+            popupImg.style.height = 'auto';
+          } else {
+            popupImg.style.height = '80vh';
+            popupImg.style.width = 'auto';
+          }
+        };
+        popupImg.onmouseenter = () => popupImg.src = popupImg.dataset.hover;
+        popupImg.onmouseleave = () => popupImg.src = popupImg.dataset.original;
+      });
+      items.push({ element: item, angle: (360 / imageCount) * i });
+    }
+    let rotation = 0;
+    function updatePositions() {
+      items.forEach(({ element, angle }) => {
+        const total = angle + rotation;
+        const rad = total * Math.PI / 180;
+        const x = Math.sin(rad) * radius;
+        const z = Math.cos(rad) * radius;
+        const scale = 0.6 + 0.4 * ((z + radius) / (2 * radius));
+        element.style.transform = `translate(-50%,-50%) translateX(${x}px) translateY(20px) translateZ(${z}px) scale(${scale})`;
+        element.style.zIndex = Math.floor(scale * 1000);
+        element.style.opacity = scale < 0.1 ? 0.2 : 1;
+      });
+    }
+    updatePositions();
+    window.addEventListener('wheel', e => {
+      rotation += e.deltaY * 0.4;
+      updatePositions();
+    }, { passive: true });
+  </script>
+</body>
+</html>
