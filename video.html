@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planta Renata - Videos</title>
+  <!-- Typekit 웹폰트 로드 -->
+  <link rel="stylesheet" href="https://use.typekit.net/ayd2iel.css">
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      color: springgreen;
+      font-family: "chainprinter", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      box-sizing: border-box;
+    }
+    /* Header title 스타일 */
+    .header-title {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 14px;
+      color: springgreen;
+      margin: 0;
+      padding: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    /* Header main link 스타일 (제목 아래로) */
+    .header-main {
+      position: absolute;
+      top: 42px; /* 제목 아래 충분한 간격 */
+      left: 20px;
+      font-size: 14px;
+      color: springgreen;
+      text-decoration: none;
+      z-index: 1;
+      pointer-events: auto;
+    }
+    /* 비디오 리스트 위 여백 */
+    .videos {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      height: 100vh;
+      margin-top: 80px; /* 상단 컨텐츠(헤더)와 비디오 사이 여백 */
+    }
+    .videos video {
+      width: 60%;
+      margin: 20px 0;
+      background-color: black;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header 영역 -->
+  <h1 class="header-title">Planta Renata</h1>
+  <a class="header-main" href="content.html">Back</a>
+
+  <!-- Video 목록 -->
+  <div class="videos">
+    <video src="vid2.mp4" controls></video>
+    <video src="vid1.mp4" controls></video>
+  </div>
+</body>
+</html>
